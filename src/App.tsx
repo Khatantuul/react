@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react'
-import './App.css'
 import Child from './Child';
 import Button from './Button';
 import ButtonWithStyle from './ButtonWithStyle';

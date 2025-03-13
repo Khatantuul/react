@@ -1,0 +1,12 @@
+.square {
+    width: 80px;
+    height: 80px;
+    font-size: 24px;
+    margin: 0;
+    padding: 0;
+    /* box-sizing: border-box; */
+  }
+  
+  .board-row {
+    display: flex;
+  }
