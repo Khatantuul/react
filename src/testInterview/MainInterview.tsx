@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useFetch } from "./hooks/useFetch";
 import { ListProducts } from "./ListProducts";
+import { useLocationContext } from "./LocationContextProvider";
 
 const ViewProduct = ({ id }: { id: number }) => {
   console.log("ViewProduct is rendering");
@@ -43,18 +44,9 @@ type Product = {
 };
 
 export default function MainInterview() {
-  const [location, setLocation] = useState<{
-    page: string;
-    params: Record<string, number>;
-  }>({
-    page: "list",
-    params: {},
-  });
 
-  const changeLocation = useCallback((page: string, params: Record<string, number>) => {
-    setLocation({ page, params: params || {} });
-  }, [setLocation])
-
+  const {location, changeLocation} = useLocationContext();
+  
   return (
     <div>
       {location.page === "list" && (
