@@ -1,18 +1,29 @@
 import { useEffect, useState } from "react";
 
+const cache = new Map();
+
 export const useFetch = <T>(url: string, method: string) => {
   const [state, setState] = useState<{
     data: T | null;
     loading: boolean;
     error: string;
   }>({
-    data: null,
+    data: cache.get(url),
     loading: true,
     error: "",
   });
 
   useEffect(() => {
-    console.log("✅ ListProducts mounted!");
+    console.log("ListProducts mounted!");
+    if(cache.has(url)){
+
+        setState({
+            data: cache.get(url),
+            loading: false,
+            error: ''
+        })
+        return;
+    }
     const controller = new AbortController();
     const signal = controller.signal;
     (async () => {
@@ -23,6 +34,7 @@ export const useFetch = <T>(url: string, method: string) => {
         }
 
         const data = await response.json();
+        cache.set(url, data);
 
         setState({
           data,
