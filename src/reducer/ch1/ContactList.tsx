@@ -1,5 +1,5 @@
 import { useReducer, useState } from "react";
-import { initialState, reducer } from "./messengerReducer";
+import { initialState, reducer, ReducerAction } from "./messengerReducer";
 
 const contacts = [
   { id: 0, name: "Taylor", email: "taylor@mail.com" },
@@ -22,7 +22,6 @@ export default function Messenger() {
   const selected = contacts.find((contact)=> {
     return contact.id === state.selectedId
   })
-  console.log(selected);
   const message = state.message;
 
   return (
@@ -34,27 +33,30 @@ export default function Messenger() {
       }}
     >
       <ContactList contacts={contacts} 
-      onSelect={(contactId: number)=>{
-        dispatch({type: 'CHANGE SELECTION', contactId})
-      }}
+      // onSelect={(contactId: number)=>{
+      //   dispatch({type: 'CHANGE SELECTION', contactId})
+      // }}
+      //or simply we can pass the dispatch 
+      dispatch={dispatch}
      
       />
       <Chat key={selected && selected.id} toWhom={selected} message={message} 
-       onEdit={(message: string)=>dispatch({type: 'EDIT MESSAGE', message})}
+      //  onEdit={(message: string)=>dispatch({type: 'EDIT MESSAGE', message})}
+      dispatch={dispatch}
       />
     </div>
   );
 }
 
-function ContactList({ contacts, onSelect }: { contacts: Contact[], 
-  onSelect: (contactId: number)=>void ,
+function ContactList({ contacts, dispatch }: { contacts: Contact[], 
+  dispatch: (action: ReducerAction)=>void ,
 }) {
   return (
     <ul style={{ listStyle: "none" }}>
       {contacts.map((contact) => {
         return (
           <li key={contact.id}>
-            <button onClick={()=>onSelect(contact.id)}>{contact.name}</button>
+            <button onClick={()=>dispatch({type: 'CHANGE SELECTION', contactId: contact.id})}>{contact.name}</button>
           </li>
         );
       })}
@@ -65,15 +67,17 @@ function ContactList({ contacts, onSelect }: { contacts: Contact[],
 interface ChatProps{
   toWhom?: Contact,
   message: string,
-  onEdit: (message: string) => void
+  // onEdit: (message: string) => void
+  dispatch: (action: ReducerAction) =>void;
 }
 
-function Chat({ toWhom, message, onEdit }: ChatProps) {
+function Chat({ toWhom, message, dispatch }: ChatProps) {
   return (
     <div>
       <textarea style={{ padding: "20px", marginTop: "15px"}} value={message} 
+      placeholder={`Chat to ${toWhom?.name}`}
       onChange={(e)=>{
-        onEdit(e.target.value)
+       dispatch({type: 'EDIT MESSAGE', message: e.target.value})
       }}
       />
 

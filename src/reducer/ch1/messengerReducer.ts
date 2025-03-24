@@ -4,7 +4,7 @@ export const initialState = {
 }
 
 type ActionType = 'CHANGE SELECTION' | 'EDIT MESSAGE';
-interface ReducerAction{
+export interface ReducerAction{
     type: ActionType,
     contactId?: number, 
     message?: string
