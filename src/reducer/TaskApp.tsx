@@ -92,7 +92,7 @@ function TaskList({ tasks, onEdit, onDelete }: TaskListProps) {
   return (
     <ul style={{ listStyle: "none", padding: 0 }}>
       {tasks.map((task) => {
-        return <Task task={task} onEdit={onEdit} onDelete={onDelete} />;
+        return <Task key={task.id} task={task} onEdit={onEdit} onDelete={onDelete} />;
       })}
     </ul>
   );
