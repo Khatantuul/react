@@ -1,0 +1,58 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+}
+
+.form{
+    width: 300px;
+    border: 2px solid #dedede;
+    height: 400px;
+}
+
+.form__selectedValue{
+    /* border: 1px solid green; */
+    padding: 1rem;
+    font-size: 1.2rem;
+    background-color: rgb(248, 225, 178);
+    text-align: center;
+    max-height: 4rem;
+  overflow: auto;
+}
+
+.form__controls{
+    min-height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form__controls button{
+    min-width: 90%;
+    padding: 1rem 2rem;
+    border-radius: 0.6rem;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    color: green;
+    font-size: 1rem;
+    font-weight: 700;
+}
+.input-container{
+    width: 100%;
+    padding: 1.2rem;
+    font-size: 1.2rem;
+   
+}
+
+.input-container input{
+    transform: scale(1.5);
+}
