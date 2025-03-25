@@ -1,5 +1,6 @@
 // import Game from "./tictactoe/Game";
 import CommentList from "./commentStructure/Comments";
+import ContextChallengeMain, { ImageSizeContextProvider } from "./context/Main";
 import EmployeeList from "./employees/Employees";
 import Form from "./form/Form";
 import FormWithReducer from "./form/FormWithReducer";
@@ -23,7 +24,12 @@ function App() {
     // <TaskApp />
     // <Messenger3 />
     // <Form />
-    <FormWithReducer />
+    // <FormWithReducer />
+    <ImageSizeContextProvider>
+
+      <ContextChallengeMain />
+    </ImageSizeContextProvider>
+  
   );
 }
 
