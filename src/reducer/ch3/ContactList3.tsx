@@ -25,7 +25,7 @@ export default function Messenger3() {
       style={{
         display: "flex",
         alignContent: "center",
-        border: "1px solid red",
+   
       }}
     >
       <ContactList contacts={contacts} 

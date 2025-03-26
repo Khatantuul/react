@@ -5,6 +5,8 @@ import TaskAppWithContextReducer, { TasksContextProvider } from "./contextWithRe
 import EmployeeList from "./employees/Employees";
 import Form from "./form/Form";
 import FormWithReducer from "./form/FormWithReducer";
+import GoalContextProvider from "./mockInterview/context";
+import FitnessTracker from "./mockInterview/Fitness";
 import Counter from "./reducer/basic/Counter";
 import Messenger from "./reducer/ch1/ContactList";
 import Messenger2 from "./reducer/ch2/ContactList2";
@@ -25,14 +27,25 @@ function App() {
     // <TaskApp />
     // <Messenger3 />
     // <Form />
+    
     // <FormWithReducer />
+ 
     // <ImageSizeContextProvider>
     //   <ContextChallengeMain />
     // </ImageSizeContextProvider>
-    <TasksContextProvider>
+    // <TasksContextProvider>
 
-      <TaskAppWithContextReducer />
-    </TasksContextProvider>
+    //   <TaskAppWithContextReducer />
+    // </TasksContextProvider>
+    // <>
+    // <Messenger />
+    // <Messenger2 />
+    // <Messenger3 />
+    // </>
+    <GoalContextProvider>
+
+      <FitnessTracker/>
+    </GoalContextProvider>
   );
 }
 

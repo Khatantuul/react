@@ -29,7 +29,7 @@ export default function Messenger() {
       style={{
         display: "flex",
         alignContent: "center",
-        border: "1px solid red",
+      
       }}
     >
       <ContactList contacts={contacts} 
