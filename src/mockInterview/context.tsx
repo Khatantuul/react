@@ -1,4 +1,4 @@
-import { createContext, Dispatch, useContext, useReducer } from "react";
+import { createContext, Dispatch, ReactNode, useContext, useReducer } from "react";
 import { Goal, initialGoals, reducer, ReducerAction } from "./reducer";
 
 
@@ -11,7 +11,7 @@ const GoalContext = createContext<GoalContext>({
     dispatch: () => {},
 });
 
-export default function GoalContextProvider({children}){
+export default function GoalContextProvider({children}: {children: ReactNode}){
     const [goals, dispatch] = useReducer(reducer, initialGoals)
     return (
         <GoalContext.Provider value={{goals, dispatch}}>
