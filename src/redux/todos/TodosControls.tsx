@@ -8,7 +8,7 @@ function TodosControls() {
     const remainingActiveTodos = useSelector((state: RootState)=>state.todos).filter(todo=>!todo.completed)
   return (
     <div className="todos-controls">
-      <div style={{display:'flex', flexDirection:'column'}}>
+      <div className="todos-controls__actions" style={{display:'flex', flexDirection:'column'}}>
         <h5>Actions</h5>
         <button onClick={()=>dispatch(markAllCompleted())}>Mark All Completed</button>
         <button>Clear Completed</button>
@@ -33,8 +33,9 @@ function TodosControls() {
         {todoColorTypes.map((color) => {
           return (
             <div key={color} style={{textAlign:'left'}}>
-              <label >
+              <label className="color-filter-list" >
                 <input type="checkbox" value={color} onChange={()=>dispatch(filterByColor(color))}/>
+                <span style={{display:'inline-block', width: '20px', height:'10px', backgroundColor: color}}></span>
                 {color}
               </label>
             </div>

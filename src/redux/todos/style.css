@@ -75,3 +75,18 @@ input[type="checkbox"]::before {
     display: flex;
     justify-content: space-between;
   }
+
+  .todos-controls__actions button{
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    background-color: rgba(16, 104, 204, 0.949);
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 2px;
+  }
+.color-filter-list{
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
