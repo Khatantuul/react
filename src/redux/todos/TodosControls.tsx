@@ -1,21 +1,22 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterByStatus, RootState } from "./store";
+import { filterByStatus, markAllCompleted, RootState } from "./store";
 
 function TodosControls() {
     const colors = useSelector((state: RootState)=> state.filters.colors)
     const statusTypes = ['All', 'Active', 'Completed']
     const dispatch = useDispatch();
+    const remainingActiveTodos = useSelector((state: RootState)=>state.todos).filter(todo=>!todo.completed)
   return (
     <div className="todos-controls">
       <div style={{display:'flex', flexDirection:'column'}}>
         <h5>Actions</h5>
-        <button>Mark All Completed</button>
+        <button onClick={()=>dispatch(markAllCompleted())}>Mark All Completed</button>
         <button>Clear Completed</button>
       </div>
       <div>
         <h5>Remaining Todos</h5>
-        <p>1 item left</p>
+        <p>{remainingActiveTodos.length} items left</p>
       </div>
       <div>
         <h5>Filter by Status</h5>

@@ -10,7 +10,8 @@ function TodoItem({ todo }: {todo: Todo}) {
     <>
       <li>
         <label>
-          <input type="checkbox" onChange={()=>{
+          <input type="checkbox" checked={todo.completed}
+          onChange={()=>{
             dispatch(completeTodo(todo.id))
           }} />
           {todo.text}
