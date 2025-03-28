@@ -1,9 +1,11 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "./store";
+import { useDispatch, useSelector } from "react-redux";
+import { filterByStatus, RootState } from "./store";
 
 function TodosControls() {
     const colors = useSelector((state: RootState)=> state.filters.colors)
+    const statusTypes = ['All', 'Active', 'Completed']
+    const dispatch = useDispatch();
   return (
     <div className="todos-controls">
       <div style={{display:'flex', flexDirection:'column'}}>
@@ -18,9 +20,11 @@ function TodosControls() {
       <div>
         <h5>Filter by Status</h5>
         <ul style={{listStyle: 'none', textAlign:'left', cursor:'pointer'}}>
-          <li>All</li>
-          <li>Active</li>
-          <li>Completed</li>
+          {
+            statusTypes.map(status => {
+                return <li key={status} onClick={()=> dispatch(filterByStatus(status))}>{status}</li>
+            })
+          }
         </ul>
       </div>
       <div >

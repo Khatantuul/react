@@ -130,11 +130,14 @@ const todoReducer = (state = initialAppState, action: TodoReducerActionTypes) =>
                 ...state,
                 todos: state.todos.filter((todo)=>!todo.completed)
             }
-        // case 'FILTER_STATUS':
-        //     return {
-        //         ...state,
-        //         todos: i
-        //     }
+        case 'FILTER_STATUS':
+            return {
+                ...state,
+                filters: {
+                    ...state.filters,
+                    status: action.payload
+                }
+            }
         default:
             return state;
     }
