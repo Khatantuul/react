@@ -14,6 +14,8 @@ import Messenger3 from "./reducer/ch3/ContactList3";
 import TaskApp from "./reducer/TaskApp";
 import CakeContainer from "./redux/react-redux/CakeContainer";
 import { store } from "./redux/react-redux/cakeStore";
+import { todoStore } from "./redux/todos/store";
+import TodosApp from "./redux/todos/TodosApp";
 import {
   LocationContext,
   LocationContextProvider,
@@ -48,8 +50,12 @@ function App() {
 
     //   <FitnessTracker/>
     // </GoalContextProvider>
-    <Provider store={store}>
-      <CakeContainer isSpecial={true}/>
+    // <Provider store={store}>
+    //   <CakeContainer isSpecial={true}/>
+    // </Provider>
+    <Provider store={todoStore}>
+      <TodosApp />
+
     </Provider>
   );
 }
