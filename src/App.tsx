@@ -12,13 +12,15 @@ import Messenger from "./reducer/ch1/ContactList";
 import Messenger2 from "./reducer/ch2/ContactList2";
 import Messenger3 from "./reducer/ch3/ContactList3";
 import TaskApp from "./reducer/TaskApp";
+import CakeContainer from "./redux/react-redux/CakeContainer";
+import { store } from "./redux/react-redux/cakeStore";
 import {
   LocationContext,
   LocationContextProvider,
 } from "./testInterview/LocationContextProvider";
 import MainInterview from "./testInterview/MainInterview";
 import TravelPlan from "./travelPlan/TravelPlan";
-
+import { Provider } from "react-redux";
 function App() {
   return (
     // <LocationContextProvider>
@@ -42,10 +44,13 @@ function App() {
     // <Messenger2 />
     // <Messenger3 />
     // </>
-    <GoalContextProvider>
+    // <GoalContextProvider>
 
-      <FitnessTracker/>
-    </GoalContextProvider>
+    //   <FitnessTracker/>
+    // </GoalContextProvider>
+    <Provider store={store}>
+      <CakeContainer isSpecial={true}/>
+    </Provider>
   );
 }
 
