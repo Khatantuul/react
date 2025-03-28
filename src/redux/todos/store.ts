@@ -6,20 +6,21 @@ export interface Todo{
     completed: boolean,
     color?: string
 }
+
 export interface RootState{
     todos: Todo[],
     filters: {
         status: string,
-        colors: []
+        colors: string[]
     }
 }
 
-// export const todoColorTypes = ['Green','Blue' ,'Orange' ,'Purple' ,'Red']
+export const todoColorTypes = ['Green','Blue' ,'Orange' ,'Purple' ,'Red']
 export type TodosFilterStatusTypes = 'All'|'Active'|'Completed'
 type TodoReducerActionTypes = {type: 'ADD_TODO', payload: ''} | {type: 'DELETE_TODO'} | {
     type: 'ASSIGN_COLOR',
     id: number,
-    payload: ''
+    payload: string
 } | {
     type: "COMPLETE_TODO",
     id: number
@@ -30,17 +31,20 @@ type TodoReducerActionTypes = {type: 'ADD_TODO', payload: ''} | {type: 'DELETE_T
 } | {
     type: 'FILTER_STATUS',
     payload: string
+} | {
+    type: 'FILTER_COLOR',
+    payload: string
 }
 
 
 const initialAppState = {
     todos: [
         { id: 0, text: 'Learn React', completed: true },
-        { id: 1, text: 'Learn Redux', completed: false, color: 'purple' },
-        { id: 2, text: 'Build something fun!', completed: false, color: 'blue' }
+        { id: 1, text: 'Learn Redux', completed: false, color: 'Purple' },
+        { id: 2, text: 'Build something fun!', completed: false, color: 'Blue' }
     ],
     filters: {
-        colors: ['Green','Blue' ,'Orange' ,'Purple' ,'Red'],
+        colors: [] as string[], 
         status: 'All'
     }
 }
@@ -90,6 +94,12 @@ export const filterByStatus = (status: string)=>{
         payload: status
     }
 }
+export const filterByColor = (color: string) =>{
+    return {
+        type: 'FILTER_COLOR',
+        payload: color
+    }
+}
 
 const todoReducer = (state = initialAppState, action: TodoReducerActionTypes) => {
     switch(action.type) {
@@ -136,6 +146,16 @@ const todoReducer = (state = initialAppState, action: TodoReducerActionTypes) =>
                 filters: {
                     ...state.filters,
                     status: action.payload
+                }
+            }
+        case 'FILTER_COLOR':
+            return {
+                ...state,
+                filters: {
+                    ...state.filters,
+                    colors: state.filters.colors.includes(action.payload)
+                    ? state.filters.colors.filter(color=>color !== action.payload) :
+                    [...state.filters.colors, action.payload]
                 }
             }
         default:

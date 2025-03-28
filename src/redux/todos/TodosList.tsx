@@ -4,21 +4,18 @@ import TodoItem from "./Todo";
 import { RootState, Todo } from "./store";
 
 function TodosList() {
-  const todos = useSelector((state: RootState) => state.todos);
-  const filterStatus = useSelector((state: RootState) => state.filters.status);
+    const {todos, filters} = useSelector((state: RootState) => state);
+  const filterStatus = filters.status;
   const filteredTodos = filterStatus === 'Active' ? todos.filter(todo=>!todo.completed): filterStatus === 'Completed' ? todos.filter(todo=>todo.completed) : todos;
-    console.log(filteredTodos);
-    
+  const filterColors = filters.colors;
+  const filteredByColorTodos = filterColors.length === 0 ? filteredTodos : filteredTodos.filter(todo=>todo.color && filterColors.includes(todo.color))
   return (
     <ul className="todos-list">
         {
-         filteredTodos.map((todo: Todo) => {
+         filteredByColorTodos.map((todo: Todo) => {
             return <TodoItem key={todo.id} todo={todo} />;
           })
         }
-       
-      
-     
     </ul>
   );
 }

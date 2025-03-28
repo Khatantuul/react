@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { assignColor, completeTodo, RootState, Todo } from "./store";
+import { assignColor, completeTodo, RootState, Todo, todoColorTypes } from "./store";
 import { useDispatch, useSelector } from "react-redux";
 
 function TodoItem({ todo }: {todo: Todo}) {
     const [color, setColor] = useState('');
-    const colors = useSelector((state: RootState)=> state.filters.colors)
     const dispatch = useDispatch();
   return (
     <>
@@ -23,7 +22,7 @@ function TodoItem({ todo }: {todo: Todo}) {
             dispatch(assignColor(todo.id, e.target.value))
         }}>
             <option defaultValue={todo.color}>{todo.color}</option>
-            {colors.map((c)=>{
+            {todoColorTypes.map((c)=>{
 
             return <option key={c} value={c}>{c}</option>
             })}

@@ -1,9 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterByStatus, markAllCompleted, RootState } from "./store";
+import { filterByColor, filterByStatus, markAllCompleted, RootState, todoColorTypes } from "./store";
 
 function TodosControls() {
-    const colors = useSelector((state: RootState)=> state.filters.colors)
     const statusTypes = ['All', 'Active', 'Completed']
     const dispatch = useDispatch();
     const remainingActiveTodos = useSelector((state: RootState)=>state.todos).filter(todo=>!todo.completed)
@@ -31,11 +30,11 @@ function TodosControls() {
       <div >
         <h5>Filter by Color</h5>
 
-        {colors.map((color) => {
+        {todoColorTypes.map((color) => {
           return (
             <div key={color} style={{textAlign:'left'}}>
               <label >
-                <input type="checkbox" />
+                <input type="checkbox" value={color} onChange={()=>dispatch(filterByColor(color))}/>
                 {color}
               </label>
             </div>
