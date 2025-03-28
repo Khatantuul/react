@@ -59,3 +59,10 @@ function mapDispatchToProps(dispatch: Dispatch, ownProps: OwnProps){
 
 export default connect(mapStateToProps, mapDispatchToProps)(CakeContainer)
 // export default CakeContainer;
+
+//Important: connect(null, mapDispatchToProps) 
+//this denotes that the comp is purely going to dispatch actions, not subscribing to store state
+//cause the comp is not displaying state 
+
+//whereas connect(mapStateToProps, null)
+//comp is purely presentational  
